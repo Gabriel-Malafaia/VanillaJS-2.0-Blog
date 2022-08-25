@@ -1,1 +1,0 @@
-## 🏁 Entrega - Blog M2

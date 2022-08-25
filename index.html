@@ -1,12 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>m2-entrega-blog-m2</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+    <meta name="description" content="Descrição do meu projeto.">
+    <link rel="shortcut icon" href="./src/assets/Kenzie-favicon.jpg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/index.css">
+    <script type="module" defer src="./src/js/index.js"></script>
 </head>
+
 <body>
-  <h1>Hello World</h1>
+    <main>
+        <div class="container__content" id="container__login">
+            <div class="container__content--login">
+                <div class="container__login">
+                    <h2>Kenzie | Login</h2>
+                    <div class="content__login--icons">
+                        <div id="icon1"></div>
+                        <div id="icon2"></div>
+                    </div>
+                    <p class="edit show__mobile" id="open-register">Faça seu cadastro aqui...</p>
+                    <form class="content__login--form" action="#">
+                        <input required type="email" name="email" placeholder="Digite seu email...">
+                        <input required type="password" name="password" placeholder="Digite sua senha...">
+                        <p>Esqueceu sua senha?</p>
+                        <button>LOGIN</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container__content--register hidden__mobile">
+                <h1>Bem vindo à Kenzie!</h1>
+                <p>Aqui você poderá ter uma imensidão de posts para compartilhar com a comunidade dev, seja um Kenzier!!</p>
+                <div>
+                    <p>Ainda não é cadastrado?</p>
+                    <p class="edit" id="open-register">Faça seu cadastro aqui...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container__content" id="container__register">
+            
+            <div class="container__content--register hidden__mobile" id="register">
+                <h1>Seja um Kenzie!</h1>
+                <p>Aqui você poderá ter uma imensidão de posts para compartilhar com a comunidade dev, seja um Kenzier!!</p>
+                <div>
+                    <p>Você já está cadastrado?</p>
+                    <p class="edit" id="open-login">Faça seu login aqui...</p>
+                </div>
+            </div>
+
+            <div class="container__content--login" id="login">
+                <div class="container__login">
+                    <h2>Kenzie | Registro</h2>
+                    <div class="content__login--icons">
+                        <div id="icon1"></div>
+                        <div id="icon2"></div>
+                    </div>
+                    <p class="edit show__mobile" id="open-login">Faça seu login aqui...</p>
+                    <form class="content__login--form" action="#">
+                        <input required type="text" name="username" placeholder="Digite seu usuário...">
+                        <input required type="email" name="email" placeholder="Digite seu email...">
+                        <input required type="text" name="img" placeholder="Link da sua imagem de perfil...">
+                        <input required type="password" name="password" placeholder="Digite sua senha...">
+                        <button>REGISTRAR</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
