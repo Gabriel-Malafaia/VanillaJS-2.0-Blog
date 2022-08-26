@@ -6,13 +6,15 @@ const userAutenticado = await Api.pegarDadosUser(localStorage.getItem("userId"))
 
 class HomePage {
     static listarPosts (lista) {
-        let osPosts = lista.forEach(post => HomePage.criarPosts(post))
+        const listaMenor = document.querySelector(".main__posts")
+        listaMenor.innerHTML = "" 
+        let osPosts = lista.forEach(post => HomePage.criarPosts(lista, post))
         return osPosts
     }
-    static criarPosts(post) {
-        let userPost = listaPosts.data[listaPosts.data.indexOf(post)].user
-        let contentPost = listaPosts.data[listaPosts.data.indexOf(post)]
-        console.log(userPost)
+    static criarPosts(lista, post) {
+        let userPost = lista[lista.indexOf(post)].user
+        let contentPost = lista[lista.indexOf(post)]
+        console.log(contentPost)
         const listaMenor = document.querySelector(".main__posts")
         const postCriado = document.createElement("li")
         const imagemUserPost = document.createElement("img")
@@ -59,17 +61,34 @@ class HomePage {
         headerProfile.innerHTML = ""
         headerProfile.append(imgProfile, nomeUsuario)
     }
-    static trocarPagina() {
+    static async trocarPagina() {
         let pagAtual = 1
         const btnProximaPag = document.getElementById("proximaPagina")
         const btnPagAnterior = document.getElementById("paginaAnterior")
+        const pgAtual = document.getElementById("pgAtual")
 
-        btnProximaPag.addEventListener("click", () => {
-            pagAtual ++
-            return Api.capturarPosts(pagAtual)
+        btnProximaPag.addEventListener("click", async (event) => {
+            event.preventDefault()
+            const novosPosts = await Api.capturarPosts(pagAtual)
+            if(pagAtual >= novosPosts.totalPages) {
+                pagAtual = 1
+            } else {
+                pagAtual ++
+            }
+            console.log(novosPosts)
+            await this.listarPosts(novosPosts.data)
+            pgAtual.innerText = pagAtual
         })
-        btnPagAnterior.addEventListener("click", () => {
-            return pagAtual --
+        btnPagAnterior.addEventListener("click", async (event) => {
+            event.preventDefault()
+            const novosPosts = await Api.capturarPosts(pagAtual)
+            if(pagAtual <= 1) {
+                pagAtual = novosPosts.totalPages 
+            } else {
+                pagAtual --
+            }
+            await this.listarPosts(novosPosts.data)
+            pgAtual.innerText = pagAtual
         })
         return pagAtual
     }
@@ -84,8 +103,9 @@ class HomePage {
                 content: inputNovoPost.value
             }
             await Api.criarNovoPost(data)
-            const postsAtualizados = await Api.capturarPosts()
-            this.listarPosts(postsAtualizados)
+            const postsAtualizados = await Api.capturarPosts(1)
+            this.listarPosts(postsAtualizados.data)
+            inputNovoPost.value = ""
             return postsAtualizados
         })
     }
@@ -95,9 +115,6 @@ HomePage.renderizarUser()
 HomePage.listarPosts(listaPosts.data)
 HomePage.novoPost()
 HomePage.trocarPagina()
-
-listaPosts.data.forEach(post => HomePage.criarPosts(post))
-HomePage.renderizarUser()
 
 headerButton.addEventListener("click", () => {
     const sairOuNao = window.confirm('Tem certeza que você deseja sair?')

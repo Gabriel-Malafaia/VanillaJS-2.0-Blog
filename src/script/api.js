@@ -34,7 +34,7 @@ export class Api {
     }
 
     static async capturarPosts(pag) {
-        const posts = await fetch(`${this.baseUrl}/posts?page=1`, {
+        const posts = await fetch(`${this.baseUrl}/posts?page=${pag}`, {
             method: "GET",
             headers: {
                 "Content-Type" : "Application/json",
