@@ -1,12 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>m2-entrega-blog-m2</title>
+  <title>Kenzie Book</title>
+  <meta name="description" content="Descrição do meu projeto.">
+  <link rel="shortcut icon" href="./src/assets/favicon-Kenzie.jpg" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles/reset.css">
+  <link rel="stylesheet" href="./src/styles/style.css">
+  <script type="module" defer src="./src/script/login.js"></script>
+  <script type="module" defer src="./src/script/register.js"></script>
+  <script type="module" defer src="./src/script/modal.js"></script>
 </head>
+
 <body>
-  
+  <main>
+    <div class="container__content" id="container__login">
+      <div class="container__content--login">
+        <div class="container__login">
+          <div style="text-align: center;">
+            <h2> < Kenzie Book > </h2>
+            <h2>Login</h2>
+          </div>
+          <div class="content__login--icons">
+            <div id="icon1"></div>
+            <div id="icon2"></div>
+          </div>
+          <p class="edit show__mobile" id="open-register">Faça seu cadastro aqui...</p>
+          <form class="content__login--form login" action="#">
+            <div class="input__group">
+              <input required type="email" name="email">
+              <label for="email">Email</label>
+            </div>
+
+            <div class="input__group">
+              <input required type="password" name="password">
+              <label for="password">Senha</label>
+            </div>
+
+            <p>Esqueceu sua senha?</p>
+            <button class="cssbuttons-io-button"> LOGIN
+              <div class="icon">
+                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                    fill="currentColor"></path>
+                </svg>
+              </div>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="container__content--register hidden__mobile">
+        <h1>Bem vindo à Kenzie Book!</h1>
+        <p>Aqui você poderá ter uma imensidão de posts para compartilhar com a comunidade dev, seja um Kenzier!!</p>
+        <div>
+          <p>Ainda não é cadastrado?</p>
+          <p class="edit" id="open-register">Faça seu cadastro aqui...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container__content" id="container__register">
+
+      <div class="container__content--register hidden__mobile" id="register">
+        <h1>Seja um Kenzie Book!</h1>
+        <p>Aqui você poderá ter uma imensidão de posts para compartilhar com a comunidade dev, seja um Kenzier!!</p>
+        <div>
+          <p>Você já está cadastrado?</p>
+          <p class="edit" id="open-login">Faça seu login aqui...</p>
+        </div>
+      </div>
+
+      <div autocomplete="off" class="container__content--login" id="login">
+        <div class="container__login">
+          <div style="text-align: center;">
+            <h2>< Kenzie Book ></h2>
+            <h2>Registro</h2>
+          </div>
+          <div class="content__login--icons">
+            <div id="icon1"></div>
+            <div id="icon2"></div>
+          </div>
+          <p class="edit show__mobile" id="open-login">Faça seu login aqui...</p>
+          <form class="content__login--form register" action="./src/pages/home.html">
+            <div class="input__group">
+              <input required type="text" name="username">
+              <label for="username">Usuário</label>
+            </div>
+            <div class="input__group">
+              <input required type="email" name="email">
+              <label for="email">Email</label>
+            </div>
+            <div class="input__group">
+              <input required type="text" name="avatarUrl">
+              <label for="avatarUrl">Imagem</label>
+            </div>
+            <div class="input__group">
+              <input required type="password" name="password">
+              <label for="password">Senha</label>
+            </div>
+            <button class="cssbuttons-io-button">REGISTRAR
+              <div class="icon">
+                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                    fill="currentColor"></path>
+                </svg>
+              </div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
 </body>
+
 </html>
