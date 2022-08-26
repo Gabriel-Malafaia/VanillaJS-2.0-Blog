@@ -14,7 +14,6 @@ class HomePage {
     static criarPosts(lista, post) {
         let userPost = lista[lista.indexOf(post)].user
         let contentPost = lista[lista.indexOf(post)]
-        console.log(contentPost)
         const listaMenor = document.querySelector(".main__posts")
         const postCriado = document.createElement("li")
         const imagemUserPost = document.createElement("img")
@@ -33,6 +32,8 @@ class HomePage {
         buttonEditPost.innerText = "Editar"
         buttonDeletePost.innerText = "Apagar"
 
+        buttonEditPost.className = contentPost.id
+        buttonDeletePost.className = contentPost.id
         postCriado.id = userPost.id
         buttonEditPost.id = "buttonEdit"
         buttonDeletePost.id = "buttonDelete"
@@ -75,7 +76,6 @@ class HomePage {
             } else {
                 pagAtual ++
             }
-            console.log(novosPosts)
             await this.listarPosts(novosPosts.data)
             pgAtual.innerText = pagAtual
         })
@@ -111,6 +111,7 @@ class HomePage {
     }
 }
 
+
 HomePage.renderizarUser()
 HomePage.listarPosts(listaPosts.data)
 HomePage.novoPost()
@@ -124,3 +125,20 @@ headerButton.addEventListener("click", () => {
         location.assign('../../index.html')
     } 
 })
+
+
+const mainPost = document.querySelector(".main__posts")
+mainPost.addEventListener("click", (e) => {
+    const Idbutton = e.target.id
+    const IdPost   = e.target.className
+    if(Idbutton == 'buttonEdit'){
+        let texto = 'Editando o post'
+        Api.editarPost(IdPost,texto)
+    } 
+
+    if(Idbutton == 'buttonDelete') {
+        Api.deletarPost(IdPost)
+        HomePage.listarPosts(listaPosts.data)
+    }
+})
+

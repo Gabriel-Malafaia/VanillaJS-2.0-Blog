@@ -34,7 +34,7 @@ export class Api {
     }
 
     static async capturarPosts(pag) {
-        const posts = await fetch(`${this.baseUrl}/posts?page=${pag}`, {
+        const posts = await fetch(`${this.baseUrl}/posts?page=1`, {
             method: "GET",
             headers: {
                 "Content-Type" : "Application/json",
@@ -77,5 +77,28 @@ export class Api {
         .catch(err => console.log(err))
 
         return novoPost
+    }
+
+    static async deletarPost(id) {
+        const deletarPost = await fetch(`${this.baseUrl}/posts/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type" : "Application/json",
+                "authorization" : `Bearer ${this.token}`
+            }
+        })   
+        return deletarPost
+    }
+
+    static async editarPost(id,content) {
+        const editarPost = await fetch(`${this.baseUrl}/posts/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type" : "Application/json",
+                "authorization" : `Bearer ${this.token}`
+            },
+            body: {"content": `${content}`}
+        })
+        
     }
 }
