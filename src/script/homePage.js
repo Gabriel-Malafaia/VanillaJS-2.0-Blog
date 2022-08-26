@@ -1,8 +1,8 @@
 import { Api } from "./api.js";
 
+const headerButton = document.querySelector("#header__button__logout")
 const listaPosts = await Api.capturarPosts()
 const userAutenticado = await Api.pegarDadosUser(localStorage.getItem("userId"))
-console.log(userAutenticado)
 
 class HomePage {
     static criarPosts(post) {
@@ -56,3 +56,12 @@ class HomePage {
 
 listaPosts.data.forEach(post => HomePage.criarPosts(post))
 HomePage.renderizarUser()
+
+headerButton.addEventListener("click", () => {
+    const sairOuNao = window.confirm('Tem certeza que você deseja sair?')
+    if(sairOuNao) {
+        localStorage.removeItem('userId')
+        localStorage.removeItem('userToken')
+        location.assign('../../index.html')
+    } 
+})
