@@ -1,6 +1,6 @@
 export class Api {
     static baseUrl = `https://blog-m2.herokuapp.com`
-
+    static token = localStorage.getItem('userToken')
     static headers = {
         "Content-Type" : "Application/json"
     }
@@ -31,5 +31,20 @@ export class Api {
         .catch(error => console.log(error))
 
         return requirirLogin
+    }
+
+    static async capturarPosts() {
+        const posts = await fetch(`${this.baseUrl}/posts?page=1`, {
+            method: "GET",
+            headers: {
+                "Content-Type" : "Application/json",
+                "authorization": `Bearer ${this.token}`
+            }
+        })
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+
+        return posts
     }
 }

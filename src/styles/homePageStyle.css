@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    background-color: #5C5D8D;
+}
+
+header {
+    background-color: #6495ED;
+    
+}
+.container {
+    max-width: 768px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#header__userProfile{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 50%;
+}
+#header__userProfile img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+#header__userProfile h1 {
+    font-size: 20px;
+    color: #fff;
+    -webkit-text-stroke: 1px #000;
+    font-weight: 800;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+header button {
+    background-color: #5C5D8D;
+    width: 80px;
+    height: max-content;
+    border: solid 1px transparent;
+    border-radius: 20px;
+    padding: 3px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+main {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 768px;
+    margin: 0 auto;
+}
+#main__criarPosts {
+    background-color: #fff;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3px 3px 0;
+    border-radius: 20px
+}
+#main__criarPosts input {
+    height: 80%;
+    border: solid 1px transparent;
+    outline: none;
+    border-radius: 20px;
+    padding: 5px;
+}
+#main__criarPosts button {
+    width: 50px;
+    align-self: flex-end;
+    padding: 0 10px;
+    border: solid 1px transparent;
+    background-color: #5C5D8D;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 20px;
+}
+.post img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.post h2 {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+.main__posts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.post span {
+    margin: 15px 0;
+    color: #363457;
+}
+.post p {
+    color: #363457;
+    font-size: 15px;
+}
+
+.post button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+}
+
+#buttonEdit {
+    background-color: #4A88DA;
+    color: #fff;
+    font-weight: bold;
+}
+#buttonDelete {
+    background-color: #ff3f5b;
+    color: #fff;
+    font-weight: bold;
+}
+.post__maior {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    gap: 20px;
+}
+.post__maior img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+}
+.post__maior button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+}
+.buttons__div {
+    display: flex;
+    justify-content: space-around;
+}
+.content__div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.post__maior span {
+    align-self:flex-end;
+}
+.post__maior span {
+    margin: 15px 0;
+    color: #363457;
+}
+.post__maior p {
+    color: #363457;
+    font-size: 15px;
+}
+.posts__telaMaior {
+    display: none;
+}
+.buttons__paginacao {
+    display: flex;
+    justify-content: flex-end;
+}
+.buttons__paginacao button{
+    width: 30px;
+    height: 40px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .main__posts {
+        display: none;
+    }
+    .posts__telaMaior {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
