@@ -42,9 +42,24 @@ export class Api {
             }
         })
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(res => res)
         .catch(err => console.log(err))
 
         return posts
+    }
+
+    static async pegarDadosUser(id) {
+        const usuario = await fetch(`${this.baseUrl}/users/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type" : "Application/json",
+                "authorization": `Bearer ${this.token}`
+            }
+        })
+        .then(res => res.json())
+        .then(res => res)
+        .catch(err => console.log(err))
+
+        return usuario
     }
 }
