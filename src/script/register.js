@@ -10,7 +10,6 @@ formularioRegister.addEventListener("submit", async (e) => {
     }
     const data = JSON.stringify(objetoCadastro)
     const cadastrarUsuario = await Api.cadastrarUsuario(data)
-    console.log(await cadastrarUsuario)
     if(await cadastrarUsuario.id) {
         alert("Cadastro bem sucedido, agora faça seu login!!")
         window.location.reload()
