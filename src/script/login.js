@@ -3,7 +3,13 @@ const formularioLogin = document.querySelector(".login")
 
 formularioLogin.addEventListener("submit", async (e) => {
     e.preventDefault()
-    console.log(e.target)
+    const dataLogin = {
+        email: formularioLogin[0].value,
+        password: formularioLogin[1].value
+    }
+    const data = JSON.stringify(dataLogin)
+    const response = await Api.logarUsuario(data)
+    console.log(response)
 })
 
 
