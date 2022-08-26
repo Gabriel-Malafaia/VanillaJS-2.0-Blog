@@ -1,0 +1,228 @@
+:root {
+    --ligthBlue: #2196f3;
+    --blue: rgb(0, 0, 248);
+    --white: #fff;
+    --whitesmoke: #f5f5f5;
+    --Grey: #dbdbdb;
+    --lightGrey: #f0f0f0;
+    --darkGrey: #808080;
+    --black: #000;
+    --ligthBlack: rgb(83, 83, 83);
+    --darkBlue: rgb(0, 0, 155);
+}
+
+body {
+    background-color: var(--whitesmoke);
+}
+
+header {
+    background-color: var(--blue);
+
+}
+
+.container {
+    max-width: 768px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#header__userProfile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 50%;
+}
+
+#header__userProfile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+#header__userProfile h1 {
+    font-size: 20px;
+    color: var(--white);
+    -webkit-text-stroke: 1px var(--black);
+    font-weight: 800;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+header button {
+    background-color: var(--whitesmoke);
+    width: 80px;
+    height: max-content;
+    border: solid 1px transparent;
+    border-radius: 20px;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--Grey);
+    cursor: pointer;
+    transition: 0.5s all;
+    -webkit-text-stroke: 1px #000;
+}
+
+header button:hover {
+    background-color: var(--ligthBlue);
+}
+
+main {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+#main__criarPosts {
+    background-color: var(--white);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3px 3px 0;
+    border-radius: 20px;
+    box-shadow: -2px 2px 6px 2px var(--darkGrey);
+}
+
+#main__criarPosts input {
+    height: 80%;
+    border: solid 1px transparent;
+    outline: none;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#main__criarPosts button {
+    width: 50px;
+    align-self: flex-end;
+    padding: 0 10px;
+    border: solid 1px transparent;
+    background-color: var(--blue);
+    border-radius: 20px;
+    font-size: 20px;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.post {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    padding: 20px 30px;
+    border-radius: 20px;
+    gap: 20px;
+    box-shadow: -2px 2px 6px 2px var(--darkGrey);
+    transition: all 0.3s;
+    height: 100%;
+}
+
+.post img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.post h2 {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.main__posts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.post span {
+    margin: 15px 0;
+    color: #363457;
+}
+
+.post p {
+    color: #363457;
+    font-size: 15px;
+}
+
+.post button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+#buttonEdit {
+    background-color: var(--blue);
+    color: var(--white);
+    font-weight: bold;
+}
+
+#buttonDelete {
+    background-color: red;
+    color: var(--white);
+    font-weight: bold;
+}
+
+.post:hover {
+    transform: scale(1.02);
+}
+
+.buttons__div {
+    display: flex;
+    width: max-content;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: column;
+}
+.caixa__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+
+.buttons__paginacao {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons__paginacao button {
+    width: 30px;
+    height: 40px;
+    font-size: 30px;
+    cursor: pointer;
+    position: relative;
+}
+#pgAtual {
+    align-self: center;
+    border: solid 1px black;
+    padding: 3px;
+}
+
+@media (max-width: 425px) {
+    .post img {
+        width: 70px;
+        height: 70px;
+    }
+    .post {
+        flex-direction: column;
+    }
+    .buttons__div {
+        flex-direction: row;
+    }
+    .caixa__content {
+        align-items: center;
+    }
+}
