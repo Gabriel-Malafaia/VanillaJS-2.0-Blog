@@ -112,23 +112,26 @@ main {
 
 .post {
     display: flex;
-    flex-direction: column;
     align-items: center;
     background-color: var(--white);
-    padding: 10px;
+    padding: 20px 30px;
     border-radius: 20px;
-
+    gap: 20px;
+    box-shadow: -2px 2px 6px 2px var(--darkGrey);
+    transition: all 0.3s;
+    height: 100%;
 }
 
 .post img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 
 .post h2 {
     margin-bottom: 10px;
     font-weight: 500;
+    font-size: 25px;
 }
 
 .main__posts {
@@ -153,6 +156,7 @@ main {
     height: 50px;
     border-radius: 50%;
     border: none;
+    cursor: pointer;
 }
 
 #buttonEdit {
@@ -167,61 +171,24 @@ main {
     font-weight: bold;
 }
 
-.post__maior {
-    display: flex;
-    align-items: center;
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: 20px;
-    gap: 20px;
-    box-shadow: -2px 2px 6px 2px var(--darkGrey);
-    transition: all 0.3s;
-}
-
-.post__maior:hover {
+.post:hover {
     transform: scale(1.02);
-}
-
-.post__maior img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-}
-
-.post__maior button {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: none;
 }
 
 .buttons__div {
     display: flex;
-    justify-content: space-around;
+    width: max-content;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: column;
 }
-
-.content__div {
+.caixa__content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.post__maior span {
-    align-self: flex-end;
-}
-
-.post__maior span {
-    margin: 15px 0;
-    color: #363457;
-}
-
-.post__maior p {
-    color: #363457;
-    font-size: 15px;
-}
-
-.posts__telaMaior {
-    display: none;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .buttons__paginacao {
@@ -234,16 +201,21 @@ main {
     height: 40px;
     font-size: 30px;
     cursor: pointer;
+    position: relative;
 }
 
-@media (min-width: 768px) {
-    .main__posts {
-        display: none;
+@media (max-width: 425px) {
+    .post img {
+        width: 70px;
+        height: 70px;
     }
-
-    .posts__telaMaior {
-        display: flex;
+    .post {
         flex-direction: column;
-        gap: 20px;
+    }
+    .buttons__div {
+        flex-direction: row;
+    }
+    .caixa__content {
+        align-items: center;
     }
 }
