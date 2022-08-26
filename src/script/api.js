@@ -33,7 +33,7 @@ export class Api {
         return requirirLogin
     }
 
-    static async capturarPosts() {
+    static async capturarPosts(pag) {
         const posts = await fetch(`${this.baseUrl}/posts?page=1`, {
             method: "GET",
             headers: {
@@ -61,5 +61,21 @@ export class Api {
         .catch(err => console.log(err))
 
         return usuario
+    }
+
+    static async criarNovoPost(data) {
+        const novoPost = await fetch(`${this.baseUrl}/posts`, {
+            method: "POST",
+            headers: {
+                "Content-Type" : "Application/json",
+                "authorization": `Bearer ${this.token}`
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(res => res)
+        .catch(err => console.log(err))
+
+        return novoPost
     }
 }
