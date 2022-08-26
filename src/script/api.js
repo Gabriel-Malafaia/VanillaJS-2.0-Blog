@@ -1,8 +1,10 @@
 export class Api {
     static baseUrl = `https://blog-m2.herokuapp.com`
+
     static headers = {
         "Content-Type" : "Application/json"
     }
+
     static async cadastrarUsuario(data) {
         const requerirCadastro = await fetch(`${this.baseUrl}/users/register`, {
             method: "POST",
@@ -22,7 +24,7 @@ export class Api {
         })
         .then(res => res.json())
         .then(res => {
-            localStorage.setItem('Authorization: Bearer', res.token)
+            localStorage.setItem('userToken', res.token)
             localStorage.setItem('userId', res.userId)
             return res
         })

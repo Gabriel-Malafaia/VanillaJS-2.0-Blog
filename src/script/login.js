@@ -9,7 +9,11 @@ formularioLogin.addEventListener("submit", async (e) => {
     }
     const data = JSON.stringify(dataLogin)
     const response = await Api.logarUsuario(data)
-    console.log(response)
+    if(response.token) {
+        location.assign('./src/pages/teste.html')
+    } else {
+        alert('Usuário ou senha incorretos.')
+    }
 })
 
 

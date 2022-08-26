@@ -89,14 +89,14 @@ body {
 }
 
 .content__login--form input:focus,
-input:valid {
+.content__login--form input:valid {
     outline: none;
     border: 2px solid var(--blue);
 }
 
-.content__login--form input:focus~label,
-input:valid~label {
-    transform: translateY(-12%) scale(0.8);
+.content__login--form input:focus ~ label,
+.content__login--form input:valid ~ label {
+    transform: translateY(-8%) scale(0.8);
     background-color: #fff;
     padding: 0 .2em;
     color: var(--blue);
@@ -262,6 +262,7 @@ input:valid~label {
 
     .container__content {
         border-radius: 2px;
+        padding: 0.8rem 0;
     }
 
     .container__content--login,
