@@ -5,12 +5,15 @@ const listaPosts = await Api.capturarPosts()
 const userAutenticado = await Api.pegarDadosUser(localStorage.getItem("userId"))
 
 class HomePage {
+    static listarPosts (lista) {
+        let osPosts = lista.forEach(post => HomePage.criarPosts(post))
+        return osPosts
+    }
     static criarPosts(post) {
         let userPost = listaPosts.data[listaPosts.data.indexOf(post)].user
         let contentPost = listaPosts.data[listaPosts.data.indexOf(post)]
-        
+        console.log(userPost)
         const listaMenor = document.querySelector(".main__posts")
-        const listaMaior = document.querySelector(".posts__telaMaior")
         const postCriado = document.createElement("li")
         const imagemUserPost = document.createElement("img")
         const nomeUserPost = document.createElement("h2")
@@ -19,27 +22,31 @@ class HomePage {
         const caixaButtons = document.createElement("div")
         const buttonEditPost = document.createElement("button")
         const buttonDeletePost =document.createElement("button")
-        const caixaImgButtons = document.createElement("div")
-        const caixaUserContent = document.createElement("div")
+        const caixaContent = document.createElement("div")
 
         imagemUserPost.src = userPost.avatarUrl
         nomeUserPost.innerText = userPost.username
         postContent.innerText = contentPost.content
-        dataPost.innerText = contentPost.createdAt
+        dataPost.innerText = contentPost.createdAt.substr(0, 10).replaceAll("-", "/")
         buttonEditPost.innerText = "Editar"
         buttonDeletePost.innerText = "Apagar"
 
+        postCriado.id = userPost.id
+        buttonEditPost.id = "buttonEdit"
+        buttonDeletePost.id = "buttonDelete"
         postCriado.className = "post"
+        caixaButtons.className = "buttons__div"
+        caixaContent.className = "caixa__content"
         
         caixaButtons.append(buttonEditPost, buttonDeletePost)
-        postCriado.append(imagemUserPost, nomeUserPost, postContent, dataPost, caixaButtons)
+        caixaContent.append(nomeUserPost, postContent, dataPost)
+        if (userPost.id == userAutenticado.id){
+            postCriado.append(imagemUserPost, caixaContent, caixaButtons)
+        } else {
+            postCriado.append(imagemUserPost, caixaContent)
+        }
         listaMenor.appendChild(postCriado)
 
-        postCriado.className = "post__maior"
-        caixaImgButtons.append(imagemUserPost, caixaButtons)
-        caixaUserContent.append(nomeUserPost, postContent)
-        postCriado.append(caixaImgButtons, caixaUserContent, dataPost)
-        listaMaior.appendChild(postCriado)
     }
     static async renderizarUser() {
         const headerProfile = document.getElementById("header__userProfile")
@@ -52,7 +59,42 @@ class HomePage {
         headerProfile.innerHTML = ""
         headerProfile.append(imgProfile, nomeUsuario)
     }
+    static trocarPagina() {
+        let pagAtual = 1
+        const btnProximaPag = document.getElementById("proximaPagina")
+        const btnPagAnterior = document.getElementById("paginaAnterior")
+
+        btnProximaPag.addEventListener("click", () => {
+            pagAtual ++
+            return Api.capturarPosts(pagAtual)
+        })
+        btnPagAnterior.addEventListener("click", () => {
+            return pagAtual --
+        })
+        return pagAtual
+    }
+    static novoPost() {
+        const inputNovoPost = document.getElementById("inputNovoPost")
+        const btnAdicionarPost = document.getElementById("btnAdicionarPost")
+
+        btnAdicionarPost.addEventListener("click", async (event) => {
+            event.preventDefault()
+
+            const data = {
+                content: inputNovoPost.value
+            }
+            await Api.criarNovoPost(data)
+            const postsAtualizados = await Api.capturarPosts()
+            this.listarPosts(postsAtualizados)
+            return postsAtualizados
+        })
+    }
 }
+
+HomePage.renderizarUser()
+HomePage.listarPosts(listaPosts.data)
+HomePage.novoPost()
+HomePage.trocarPagina()
 
 listaPosts.data.forEach(post => HomePage.criarPosts(post))
 HomePage.renderizarUser()
