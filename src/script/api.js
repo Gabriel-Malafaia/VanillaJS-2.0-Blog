@@ -92,13 +92,13 @@ export class Api {
 
     static async editarPost(id,content) {
         const editarPost = await fetch(`${this.baseUrl}/posts/${id}`, {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 "Content-Type" : "Application/json",
                 "authorization" : `Bearer ${this.token}`
             },
-            body: {"content": `${content}`}
+            body: JSON.stringify(content)
         })
-        
+        return editarPost
     }
 }

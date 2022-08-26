@@ -133,7 +133,7 @@ mainPost.addEventListener("click", (e) => {
     const IdPost   = e.target.className
     if(Idbutton == 'buttonEdit'){
         let texto = 'Editando o post'
-        Api.editarPost(IdPost,texto)
+        Api.editarPost(IdPost,{content: texto})
     } 
 
     if(Idbutton == 'buttonDelete') {
