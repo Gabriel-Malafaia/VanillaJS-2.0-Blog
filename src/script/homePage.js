@@ -132,9 +132,16 @@ mainPost.addEventListener("click", (e) => {
     const Idbutton = e.target.id
     const IdPost   = e.target.className
     if(Idbutton == 'buttonEdit'){
-        console.log("edit")
-        let texto = 'Editando o post'
+    const editar = document.querySelector(".bgModalEdit")
+      editar.style.display = "block"
+    const postar = document.querySelector("#btnEditarPost")
+
+    postar.addEventListener("click", () => {
+        const inputeditar = document.querySelector("#inputEditpost")
+        
+         let texto = 'Editando o post'
         Api.editarPost(IdPost,{content: texto})
+    })
     } 
 
     if(Idbutton == 'buttonDelete') {
