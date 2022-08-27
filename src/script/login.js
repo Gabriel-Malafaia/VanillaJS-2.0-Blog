@@ -1,10 +1,9 @@
-import {
-    Api
-} from "./api.js"
+import {Api} from "./api.js"
 
 class Login {
     static validarLogin() {
         const formularioLogin = document.querySelector(".login")
+        const modalLogin = document.querySelector(".container__modal")
         formularioLogin.addEventListener("submit", async (e) => {
             e.preventDefault()
             const dataLogin = {
@@ -16,13 +15,20 @@ class Login {
             if (response.token) {
                 location.assign('./src/pages/homePage.html')
             } else {
-                alert('Usuário ou senha incorretos.')
+                modalLogin.style.display = "flex"
+                modalLogin.addEventListener("click", (e) => {
+                    if (e.target.tagName == "BUTTON") {
+                        modalLogin.style.display = "none"
+                    }
+                })
             }
         })
     }
 
     static validarRegistro() {
         const formularioRegister = document.querySelector(".register")
+        const modalRegister = document.querySelector("#register__modal--invalid")
+        const modalSucess = document.querySelector("#register__modal--sucess")
         formularioRegister.addEventListener("submit", async (e) => {
             e.preventDefault()
             const objetoCadastro = {}
@@ -33,10 +39,20 @@ class Login {
             const data = JSON.stringify(objetoCadastro)
             const cadastrarUsuario = await Api.cadastrarUsuario(data)
             if (await cadastrarUsuario.id) {
-                alert("Cadastro bem sucedido, agora faça seu login!!")
-                window.location.reload()
+                modalSucess.style.display = "flex"
+                modalSucess.addEventListener("click", (e) => {
+                    if (e.target.tagName == "BUTTON") {
+                        modalSucess.style.display = "none"
+                        window.location.reload()
+                    }
+                })
             } else {
-                alert("Cadastro incorreto, verifique seus dados.")
+                modalRegister.style.display = "flex"
+                modalRegister.addEventListener("click", (e) => {
+                    if (e.target.tagName == "BUTTON") {
+                        modalRegister.style.display = "none"
+                    }
+                })
             }
         })
     }
@@ -44,7 +60,6 @@ class Login {
     static modalLogin() {
         const login = document.getElementById("container__login")
         const register = document.getElementById("container__register")
-
         login.addEventListener("click", (e) => {
             const idLocal = e.target.id
             if (idLocal == 'open-register') {
@@ -60,8 +75,6 @@ class Login {
             }
         })
     }
-
-
 }
 
 Login.validarLogin()

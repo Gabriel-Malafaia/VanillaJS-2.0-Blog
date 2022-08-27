@@ -5,7 +5,7 @@ import {
 const headerButton = document.querySelector("#header__button__logout")
 const listaPosts = await Api.capturarPosts()
 const userAutenticado = await Api.pegarDadosUser(localStorage.getItem("userId"))
-
+console.log(userAutenticado)
 class HomePage {
     static listarPosts(lista) {
         const listaMenor = document.querySelector(".main__posts")
@@ -44,6 +44,7 @@ class HomePage {
         caixaButtons.className = "buttons__div"
         caixaContent.className = "caixa__content"
 
+        console.log(userPost.id)
         caixaButtons.append(buttonEditPost, buttonDeletePost)
         caixaContent.append(nomeUserPost, postContent, dataPost)
         if (userPost.id == userAutenticado.id) {
