@@ -1,13 +1,15 @@
-import { Api } from "./api.js";
+import {
+    Api
+} from "./api.js";
 
 const headerButton = document.querySelector("#header__button__logout")
 const listaPosts = await Api.capturarPosts()
 const userAutenticado = await Api.pegarDadosUser(localStorage.getItem("userId"))
 
 class HomePage {
-    static listarPosts (lista) {
+    static listarPosts(lista) {
         const listaMenor = document.querySelector(".main__posts")
-        listaMenor.innerHTML = "" 
+        listaMenor.innerHTML = ""
         let osPosts = lista.forEach(post => HomePage.criarPosts(lista, post))
         return osPosts
     }
@@ -22,7 +24,7 @@ class HomePage {
         const dataPost = document.createElement("span")
         const caixaButtons = document.createElement("div")
         const buttonEditPost = document.createElement("button")
-        const buttonDeletePost =document.createElement("button")
+        const buttonDeletePost = document.createElement("button")
         const caixaContent = document.createElement("div")
 
         imagemUserPost.src = userPost.avatarUrl
@@ -40,10 +42,10 @@ class HomePage {
         postCriado.className = "post"
         caixaButtons.className = "buttons__div"
         caixaContent.className = "caixa__content"
-        
+
         caixaButtons.append(buttonEditPost, buttonDeletePost)
         caixaContent.append(nomeUserPost, postContent, dataPost)
-        if (userPost.id == userAutenticado.id){
+        if (userPost.id == userAutenticado.id) {
             postCriado.append(imagemUserPost, caixaContent, caixaButtons)
         } else {
             postCriado.append(imagemUserPost, caixaContent)
@@ -71,10 +73,10 @@ class HomePage {
         btnProximaPag.addEventListener("click", async (event) => {
             event.preventDefault()
             const novosPosts = await Api.capturarPosts(pagAtual)
-            if(pagAtual >= novosPosts.totalPages) {
+            if (pagAtual >= novosPosts.totalPages) {
                 pagAtual = 1
             } else {
-                pagAtual ++
+                pagAtual++
             }
             await this.listarPosts(novosPosts.data)
             pgAtual.innerText = pagAtual
@@ -82,10 +84,10 @@ class HomePage {
         btnPagAnterior.addEventListener("click", async (event) => {
             event.preventDefault()
             const novosPosts = await Api.capturarPosts(pagAtual)
-            if(pagAtual <= 1) {
-                pagAtual = novosPosts.totalPages 
+            if (pagAtual <= 1) {
+                pagAtual = novosPosts.totalPages
             } else {
-                pagAtual --
+                pagAtual--
             }
             await this.listarPosts(novosPosts.data)
             pgAtual.innerText = pagAtual
@@ -119,45 +121,52 @@ HomePage.trocarPagina()
 
 headerButton.addEventListener("click", () => {
     const sairOuNao = window.confirm('Tem certeza que você deseja sair?')
-    if(sairOuNao) {
+    if (sairOuNao) {
         localStorage.removeItem('userId')
         localStorage.removeItem('userToken')
         location.assign('../../index.html')
-    } 
+    }
 })
 
 
 const mainPost = document.querySelector(".main__posts")
 mainPost.addEventListener("click", (e) => {
     const Idbutton = e.target.id
-    const IdPost   = e.target.className
-    if(Idbutton == 'buttonEdit'){
-    const editar = document.querySelector(".bgModalEdit")
-      editar.style.display = "block"
-    const postar = document.querySelector("#btnEditarPost")
+    const IdPost = e.target.className
+    if (Idbutton == 'buttonEdit') {
+        e.preventDefault()
+        const editar = document.querySelector(".bgModalEdit")
+        editar.style.display = "block"
+        const postar = document.querySelector("#btnEditarPost")
+        const naoPostar = document.querySelector("#btnNaoEditarPost")
 
-    postar.addEventListener("click", () => {
-        const inputeditar = document.querySelector("#inputEditpost")
-        
-         let texto = 'Editando o post'
-        Api.editarPost(IdPost,{content: texto})
-    })
-    } 
+        postar.addEventListener("click", async (e) => {
+            e.preventDefault()
+            const inputeditar = document.querySelector("#inputEditpost")
+            await Api.editarPost(IdPost, {content: inputeditar.value})
+            editar.style.display = "none"
+            window.location.reload()
+        })
 
-    if(Idbutton == 'buttonDelete') {
+        naoPostar.addEventListener("click", async (e) => {
+            e.preventDefault()
+            editar.style.display = "none"
+        })
+    }
+
+    if (Idbutton == 'buttonDelete') {
         const deletar = document.querySelector(".bgModalDelete")
         deletar.style.display = "block"
         const botaoSim = document.querySelector("#btnSim")
-    botaoSim.addEventListener("click",() => {
-        Api.deletarPost(IdPost)
-        HomePage.listarPosts(listaPosts.data)
-        deletar.style.display = "none"
-    })
-    const botaoNao = document.querySelector("#btnNao") 
-      
-    botaoNao.addEventListener("click", () => {
-        deletar.style.display = "none" 
-    })
+        botaoSim.addEventListener("click", async () => {
+            await Api.deletarPost(IdPost)
+            deletar.style.display = "none"
+            window.location.reload()
+        })
+        const botaoNao = document.querySelector("#btnNao")
+
+        botaoNao.addEventListener("click", () => {
+            deletar.style.display = "none"
+        })
     }
 })
-
