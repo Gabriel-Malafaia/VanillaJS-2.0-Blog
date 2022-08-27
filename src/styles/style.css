@@ -94,8 +94,8 @@ body {
     border: 2px solid var(--blue);
 }
 
-.content__login--form input:focus ~ label,
-.content__login--form input:valid ~ label {
+.content__login--form input:focus~label,
+.content__login--form input:valid~label {
     transform: translateY(-8%) scale(0.8);
     background-color: #fff;
     padding: 0 .2em;

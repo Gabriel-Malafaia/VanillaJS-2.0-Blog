@@ -213,7 +213,7 @@ main {
     padding: 3px;
 }
 
-.bgModalEdit{
+.bgModalEdit {
     position: fixed;
     display: none;
     top: 0;
@@ -223,10 +223,11 @@ main {
     width: 100%;
     height: 100%;
     z-index: 1040;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
 }
 
-.editarPosts{
+.editarPosts {
+    min-width: 300px;
     width: 40%;
     height: 20%;
     margin: 30vh auto 0 auto;
@@ -236,8 +237,10 @@ main {
     justify-content: center;
     align-items: center;
     background-color: var(--white);
+    gap: 10px;
+}
 
-}.bgModalDelete{
+.bgModalDelete {
     position: fixed;
     display: none;
     top: 0;
@@ -247,10 +250,11 @@ main {
     width: 100%;
     height: 100%;
     z-index: 1040;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
 }
 
-.deletarPosts{
+.deletarPosts {
+    min-width: 300px;
     width: 23%;
     height: 23%;
     background-color: var(--white);
@@ -266,7 +270,7 @@ main {
     border-radius: 20px;
 }
 
-.deletarPosts div{
+.deletarPosts div {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
@@ -274,7 +278,8 @@ main {
     margin-top: 15px;
 }
 
-#inputEditpost{
+#inputEditpost {
+    font-size: 22px;
     width: 85%;
     height: 90%;
     outline: none;
@@ -283,22 +288,23 @@ main {
     background-color: var(--white);
 }
 
-#btnEditarPost{
+#btnEditarPost {
     background-color: var(--blue);
     color: var(--white);
 }
 
-#btnSim{
+#btnSim,
+#btnNaoEditarPost {
     background-color: red;
     color: var(--white);
 }
 
-#btnNao{
+#btnNao {
     background-color: var(--blue);
     color: var(--white);
 }
 
-.botoesclass{
+.botoesclass {
     font-weight: bold;
     width: 50px;
     height: 50px;
@@ -307,11 +313,11 @@ main {
     cursor: pointer;
 }
 
-.botoesclass:hover{
+.botoesclass:hover {
     color: var(--Grey);
 }
 
-.deletePost{
+.deletePost {
     border-radius: 20px;
 }
 
@@ -321,12 +327,15 @@ main {
         width: 70px;
         height: 70px;
     }
+
     .post {
         flex-direction: column;
     }
+
     .buttons__div {
         flex-direction: row;
     }
+
     .caixa__content {
         align-items: center;
     }

@@ -13,6 +13,7 @@ class HomePage {
         let osPosts = lista.forEach(post => HomePage.criarPosts(lista, post))
         return osPosts
     }
+
     static criarPosts(lista, post) {
         let userPost = lista[lista.indexOf(post)].user
         let contentPost = lista[lista.indexOf(post)]
@@ -51,19 +52,20 @@ class HomePage {
             postCriado.append(imagemUserPost, caixaContent)
         }
         listaMenor.appendChild(postCriado)
-
     }
+
     static async renderizarUser() {
         const headerProfile = document.getElementById("header__userProfile")
         const imgProfile = document.createElement("img")
         const nomeUsuario = document.createElement("h1")
-
+        
         imgProfile.src = userAutenticado.avatarUrl
         nomeUsuario.innerText = userAutenticado.username
 
         headerProfile.innerHTML = ""
         headerProfile.append(imgProfile, nomeUsuario)
     }
+
     static async trocarPagina() {
         let pagAtual = 1
         const btnProximaPag = document.getElementById("proximaPagina")
@@ -81,6 +83,7 @@ class HomePage {
             await this.listarPosts(novosPosts.data)
             pgAtual.innerText = pagAtual
         })
+
         btnPagAnterior.addEventListener("click", async (event) => {
             event.preventDefault()
             const novosPosts = await Api.capturarPosts(pagAtual)
@@ -94,13 +97,13 @@ class HomePage {
         })
         return pagAtual
     }
+
     static novoPost() {
         const inputNovoPost = document.getElementById("inputNovoPost")
         const btnAdicionarPost = document.getElementById("btnAdicionarPost")
 
         btnAdicionarPost.addEventListener("click", async (event) => {
             event.preventDefault()
-
             const data = {
                 content: inputNovoPost.value
             }
@@ -111,62 +114,77 @@ class HomePage {
             return postsAtualizados
         })
     }
+
+    static buttonLogout() {
+        headerButton.addEventListener("click", () => {
+            const sairOuNao = window.confirm('Tem certeza que você deseja sair?')
+            if (sairOuNao) {
+                localStorage.removeItem('userId')
+                localStorage.removeItem('userToken')
+                location.assign('../../index.html')
+            }
+        })
+    }
+
+    static validarUser() {
+        const token = localStorage.getItem('userToken')
+        if (!token) {
+            location.assign('../../index.html')
+        }
+    }
+
+    static editAndDeletePost() {
+        const mainPost = document.querySelector(".main__posts")
+        mainPost.addEventListener("click", (e) => {
+            const Idbutton = e.target.id
+            const IdPost = e.target.className
+            
+            if (Idbutton == 'buttonEdit') {
+                e.preventDefault()
+                const editar = document.querySelector(".bgModalEdit")
+                editar.style.display = "block"
+                const postar = document.querySelector("#btnEditarPost")
+                const naoPostar = document.querySelector("#btnNaoEditarPost")
+
+                postar.addEventListener("click", async (e) => {
+                    e.preventDefault()
+                    const inputeditar = document.querySelector("#inputEditpost")
+                    await Api.editarPost(IdPost, {
+                        content: inputeditar.value
+                    })
+                    editar.style.display = "none"
+                    window.location.reload()
+                })
+
+                naoPostar.addEventListener("click", async (e) => {
+                    e.preventDefault()
+                    editar.style.display = "none"
+                })
+            }
+
+            if (Idbutton == 'buttonDelete') {
+                const deletar = document.querySelector(".bgModalDelete")
+                deletar.style.display = "block"
+                const botaoSim = document.querySelector("#btnSim")
+                botaoSim.addEventListener("click", async () => {
+                    await Api.deletarPost(IdPost)
+                    deletar.style.display = "none"
+                    window.location.reload()
+                })
+                const botaoNao = document.querySelector("#btnNao")
+
+                botaoNao.addEventListener("click", () => {
+                    deletar.style.display = "none"
+                })
+            }
+        })
+    }
 }
 
-
+HomePage.validarUser()
 HomePage.renderizarUser()
 HomePage.listarPosts(listaPosts.data)
 HomePage.novoPost()
 HomePage.trocarPagina()
-
-headerButton.addEventListener("click", () => {
-    const sairOuNao = window.confirm('Tem certeza que você deseja sair?')
-    if (sairOuNao) {
-        localStorage.removeItem('userId')
-        localStorage.removeItem('userToken')
-        location.assign('../../index.html')
-    }
-})
-
-
-const mainPost = document.querySelector(".main__posts")
-mainPost.addEventListener("click", (e) => {
-    const Idbutton = e.target.id
-    const IdPost = e.target.className
-    if (Idbutton == 'buttonEdit') {
-        e.preventDefault()
-        const editar = document.querySelector(".bgModalEdit")
-        editar.style.display = "block"
-        const postar = document.querySelector("#btnEditarPost")
-        const naoPostar = document.querySelector("#btnNaoEditarPost")
-
-        postar.addEventListener("click", async (e) => {
-            e.preventDefault()
-            const inputeditar = document.querySelector("#inputEditpost")
-            await Api.editarPost(IdPost, {content: inputeditar.value})
-            editar.style.display = "none"
-            window.location.reload()
-        })
-
-        naoPostar.addEventListener("click", async (e) => {
-            e.preventDefault()
-            editar.style.display = "none"
-        })
-    }
-
-    if (Idbutton == 'buttonDelete') {
-        const deletar = document.querySelector(".bgModalDelete")
-        deletar.style.display = "block"
-        const botaoSim = document.querySelector("#btnSim")
-        botaoSim.addEventListener("click", async () => {
-            await Api.deletarPost(IdPost)
-            deletar.style.display = "none"
-            window.location.reload()
-        })
-        const botaoNao = document.querySelector("#btnNao")
-
-        botaoNao.addEventListener("click", () => {
-            deletar.style.display = "none"
-        })
-    }
-})
+HomePage.buttonLogout()
+HomePage.editAndDeletePost()
