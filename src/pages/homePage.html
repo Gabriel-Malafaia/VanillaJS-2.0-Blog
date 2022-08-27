@@ -24,12 +24,27 @@
         </div>
     </header>
 
-    <main>
+    <main>    
         <form id="main__criarPosts">
             <input type="text" placeholder="No que está pensando?" id="inputNovoPost">
             <button id="btnAdicionarPost">+</button>
         </form>
-
+        <div class="bgModalEdit">
+            <form class="editarPosts">
+                <input id="inputEditpost" type="text">
+                <button class="botoesclass"id="btnEditarPost">editar</button>
+            </form>
+        </div>
+    
+        <div class="bgModalDelete">
+            <div class="deletarPosts">
+                <h4>Tem certeza que deseja excluir?</h4>
+                <div class="botoesModalDelete">
+                    <button class="botoesclass" id="buttonDelete">Sim</button>
+                    <button class="botoesclass" id="btnNao">Não</button>
+                </div>
+            </div>
+        </div>
         <ul class="main__posts">
 
         </ul>
