@@ -1,4 +1,6 @@
-import {Api} from "./api.js"
+import {
+    Api
+} from "./api.js"
 
 class Login {
     static validarLogin() {
@@ -50,7 +52,6 @@ class Login {
                 register.style.display = 'flex'
             }
         })
-
         register.addEventListener("click", (e) => {
             const idLocal = e.target.id
             if (idLocal == 'open-login') {
@@ -59,6 +60,8 @@ class Login {
             }
         })
     }
+
+
 }
 
 Login.validarLogin()

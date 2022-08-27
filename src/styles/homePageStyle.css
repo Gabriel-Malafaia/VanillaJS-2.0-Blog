@@ -91,6 +91,7 @@ main {
 }
 
 #main__criarPosts input {
+    font-size: 20px;
     height: 80%;
     border: solid 1px transparent;
     outline: none;
@@ -237,7 +238,7 @@ main {
     justify-content: center;
     align-items: center;
     background-color: var(--white);
-    gap: 10px;
+    gap: 5px;
 }
 
 .bgModalDelete {
@@ -306,6 +307,8 @@ main {
 
 .botoesclass {
     font-weight: bold;
+    min-width: 50px;
+    min-height: 50px;
     width: 50px;
     height: 50px;
     border-radius: 50%;

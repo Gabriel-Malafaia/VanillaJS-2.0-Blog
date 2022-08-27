@@ -179,6 +179,7 @@ class HomePage {
             }
         })
     }
+
 }
 
 HomePage.validarUser()
@@ -188,3 +189,4 @@ HomePage.novoPost()
 HomePage.trocarPagina()
 HomePage.buttonLogout()
 HomePage.editAndDeletePost()
+HomePage.modalEditar()
