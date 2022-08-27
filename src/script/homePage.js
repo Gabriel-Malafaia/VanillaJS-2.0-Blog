@@ -132,13 +132,25 @@ mainPost.addEventListener("click", (e) => {
     const Idbutton = e.target.id
     const IdPost   = e.target.className
     if(Idbutton == 'buttonEdit'){
+        console.log("edit")
         let texto = 'Editando o post'
         Api.editarPost(IdPost,{content: texto})
     } 
 
     if(Idbutton == 'buttonDelete') {
+        const deletar = document.querySelector(".bgModalDelete")
+        deletar.style.display = "block"
+        const botaoSim = document.querySelector("#btnSim")
+    botaoSim.addEventListener("click",() => {
         Api.deletarPost(IdPost)
         HomePage.listarPosts(listaPosts.data)
+        deletar.style.display = "none"
+    })
+    const botaoNao = document.querySelector("#btnNao") 
+      
+    botaoNao.addEventListener("click", () => {
+        deletar.style.display = "none" 
+    })
     }
 })
 
