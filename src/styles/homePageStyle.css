@@ -182,6 +182,7 @@ main {
     justify-content: center;
     flex-direction: column;
 }
+
 .caixa__content {
     display: flex;
     flex-direction: column;
@@ -205,11 +206,100 @@ main {
     cursor: pointer;
     position: relative;
 }
+
 #pgAtual {
     align-self: center;
     border: solid 1px black;
     padding: 3px;
 }
+
+.bgModalEdit{
+    width: 100%;
+    height: 100%;
+    background: var(--lightGrey);
+    position: fixed;
+    z-index: 2;
+    display: none;
+}
+
+.editarPosts{
+    width: 40%;
+    height: 20%;
+    margin: 30vh auto 0 auto;
+    border: solid 1px transparent;
+    display: none;
+
+}.bgModalDelete{
+    width: 100%;
+    height: 100%;
+    background: var(--lightGrey);
+    position: fixed;
+    z-index: 2;
+    display: none;
+}
+
+.deletarPosts{
+    width: 20%;
+    height: 20%;
+    background-color: var(--white);
+    margin: 30vh auto 0 auto;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    border: solid 1px var(--Grey);
+}
+
+.deletePost div{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 40%;
+}
+
+#inputEditpost{
+    width: 85%;
+    height: 90%;
+    outline: none;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: var(--white);
+}
+
+#btnEditarPost{
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+#buttonDelete{
+    background-color: red;
+    color: var(--white);
+}
+
+#btnNao{
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.botoesclass{
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.botoesclass:hover{
+    color: var(--Grey);
+}
+
+.deletePost{
+    border-radius: 20px;
+}
+
 
 @media (max-width: 425px) {
     .post img {
